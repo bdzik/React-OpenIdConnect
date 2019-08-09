@@ -70,7 +70,7 @@ var Authenticate = function (_Component) {
       this.userManager.getUser().then(function (user) {
         if (user !== null && user !== undefined) {
           _this2.onUserLoaded(user);
-        } else if (window.location.href.indexOf("#access_token") > -1) {
+        } else if (window.location.href.indexOf("&id_token") > -1) {
           _this2.userManager.signinRedirectCallback().then(function () {
             window.history.replaceState({}, "", "/");
           }).catch(function (err) {
