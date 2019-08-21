@@ -29,10 +29,14 @@ class Authenticate extends Component {
       if (user !== null && user !== undefined) {
         this.onUserLoaded(user);
       } else if (window.location.href.includes("#id_token")) {
+        var url = window.location.href;
+        var removed = url.slice(url.indexOf("#") + 1, url.indexOf("&") + 1);
+        var newUrl = url.replace(removed, "");
+        console.log(newUrl);
         this.userManager
           .signinRedirectCallback()
           .then(() => {
-            window.history.replaceState({}, "", "/");
+            window.history.replaceState({}, "", newUrl);
           })
           .catch(function(err) {
             console.log("Error signinRedirectCallback: ", err);
