@@ -34,9 +34,8 @@ class Authenticate extends Component {
         var newUrl = url.replace(removed, "");
         console.log(newUrl);
         console.log(this.userManager);
-        window.history.replaceState({}, "", newUrl);
         this.userManager
-          .signinRedirectCallback()
+          .signinRedirectCallback(newUrl)
           .then(() => {
             window.history.replaceState({}, "", newUrl);
             console.log("REPLACE STATE");
